@@ -74,12 +74,14 @@ void main()
 	cin.getline(str, n); //CP1251
 	//SetConsoleCP(866);
 	cout << str << endl; //CP866
-	cout << StringLength(str) << endl;
+	cout << "Characters: " << StringLength(str) << endl;
 	//cout << (int)'0' << endl;
 	to_upper(str);
-	cout << str << endl;
+	cout << "to_upper: " << str << endl;
+	to_lower(str);
+	cout << "to_lower: " << str << endl;
 	capitalize(str);
-	cout << str << endl;
+	cout << "capitalize: " << str << endl;
 }
 
 void ASCII()
