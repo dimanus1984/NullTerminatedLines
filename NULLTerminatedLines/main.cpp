@@ -80,6 +80,7 @@ void main()
 	to_upper(str);
 	cout << "to_upper: " << str << endl;
 	to_lower(str);
+
 	cout << "to_lower: " << str << endl;
 	capitalize(str);
 	cout << "capitalize: " << str << endl;
