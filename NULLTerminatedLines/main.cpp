@@ -35,8 +35,8 @@ void shrink(char str[]);           //Удаляет из строки лишни
 /* *** Строки ***
 * Строка в языке С представляет собой массив элементов типа char.
 * Последним элементом этого массива всегда является ASCII - символ с кодом 0 '\0'
-* Этот ноль является терминирующим, т.е. он показывает конец строки.
-* Строки в языке С называют NULL terminated lines или стороки заканчивающиеся нулем.
+* Этот ноль называют терминирующим, т.е. он показывает конец строки.
+* Строки в языке С называют NULL Terminated Lines или строки заканчивающиеся нулем.
 */
 //#define STRING_DECLARATION //Объявление строк
 //Фрагмент кода #define - Ctrl+K+S
@@ -69,26 +69,28 @@ void main()
 	//cout << 'a' - 'A' << endl;
 	const int n = 150;
 	char str[n] = {};
-	cout << "Введите строку: ";	//cin >> str;
+	cout << "Введите строку: ";
+	//в cin пробел является основным разделителем, все что за пробелом сохранится в другой переменной.
+	//cin >> str;
 	Input(str, n);
 	//SetConsoleCP(866);
 	//cout << str << endl; //CP866
 
-	cout << "Line Length: " << StringLength(str) << " characters" << endl;
+	cout << "...Line Length: " << StringLength(str) << " characters" << endl;
 	//cout << '0' << endl;      //Выведит char 0
 	//cout << (int)'0' << endl; //Выведит код '0' - 48
 
 	to_upper(str);
-	cout << "   to_upper: " << str << endl;
+	cout << "......to_upper: " << str << endl;
 
 	to_lower(str);
-	cout << "   to_lower: " << str << endl;
+	cout << "......to_lower: " << str << endl;
 
 	capitalize(str);
-	cout << " capitalize: " << str << endl;
+	cout << "....capitalize: " << str << endl;
 
 	shrink(str);
-	cout << "     shrink: " << str << endl;
+	cout << "........shrink: " << str << endl;
 }
 
 void Input(char str[], const int n)
