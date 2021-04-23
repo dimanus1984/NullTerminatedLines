@@ -13,7 +13,8 @@ void to_lower(char str[]);         //Переводит строку в нижн
 void capitalize(char str[]);       //Первую букву каждого слова в предложении делает заглавной
 void shrink(char str[]);           //Удаляет из строки лишние пробелы, например:
 								   //Хорошо      живет   на  свете   Винни   Пух
-//bool is_palindrome(char str[]);  //Определяет, является ли строка палиндромом
+void remove_symbol(char str[], char symbol);
+bool is_palindrome(char str[]);    //Определяет, является ли строка палиндромом
 //bool is_int_number(char str[]);  //Определяет, является ли строка целым числом
 								   //Строка является целым числом, когда она состоит только из цифр.
 //int to_int_number(char str[]);   //Если строка - целое число, функция вернет его числовое значение.
@@ -91,6 +92,12 @@ void main()
 
 	shrink(str);
 	cout << "........shrink: " << str << endl;
+
+	//is_palindrome(str);
+	cout << "....palindrome: ";
+	(is_palindrome(str) == 0) ? cout << "Строка не является палиндромом" << endl : cout << "Строка является палиндромом" << endl;
+	cout << is_palindrome(str) << endl;
+	cout << str << endl;
 }
 
 void Input(char str[], const int n)
@@ -177,7 +184,7 @@ void shrink(char str[])
 {
 	for (int i = 0; str[i]; i++)
 	{
-		//Если пробел и следующий пробел или
+		//Пока элемент стоки равен пробелу и следующий элемент равен пробелу или 0
 		while ((str[i] == ' ' && (str[i + 1] == ' ' || str[i + 1] == 0)) || str[0] == ' ')
 		{
 			//То сдвигаем в лево строку
@@ -187,4 +194,41 @@ void shrink(char str[])
 			}
 		}
 	}
+}
+
+void remove_symbol(char str[], char symbol)
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (str[i] == symbol)
+		{
+			for (int j = i; str[j]; j++)
+			{
+				str[j] = str[j + 1];
+			}
+			i--;
+		}
+	}
+}
+
+bool is_palindrome(char str[])
+{
+	//Узнаем размер строки
+	int size = StringLength(str);
+	char* buffer = new char[size + 1]{};
+	strcpy_s(buffer, size + 1, str); //Копирует строку str в сторку buffer
+	to_lower(buffer);
+	remove_symbol(buffer, ' ');
+	size = StringLength(buffer);
+	for (int i = 0; i < size / 2; i++)
+	{
+		//Если первый символ не равен последнему или второй не равен предпоследнему и т.д.
+		if (buffer[i] != buffer[size - 1 - i])
+		{
+			delete[] buffer;
+			return false;
+		}
+	}
+	delete[] buffer;
+	return true;
 }
